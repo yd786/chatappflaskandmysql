@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MyFLaskApp</title>
+	<meta name="viewport" content="width=device-width, initial_scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/bootstrap.min.css')}}">
+</head>
+<body>
+	<div class="container pt-4">
+	{% include 'includes/_fmessage.html' %}
+	{% block code %}
+	{% endblock %}
+	</div>
+</body>
+</html>

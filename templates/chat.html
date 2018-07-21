@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block code %}
+	<style>
+		#chat{
+			height: 400px;
+			overflow-x : hidden;
+			overflow-y: scroll;
+		}
+	</style>
+	{% if not msg %}
+	<div class="jumbotron pt-3 pb-3 mb-2" id="chat">
+		{% for chat in chats %}
+			{% if chat.username == session.username %}
+				<div class="message mb-2 text-right">
+				<div class="username">{{chat.username}}</div>
+				<div class="user-message rounded bg-dark p-1 m-2 text-white d-inline">{{chat.message}}</div>
+				</div>
+			{% else %}
+				<div class="message mb-2">
+				<div class="username ">{{chat.username}}</div>
+				<div class="user-message rounded bg-primary p-1 m-2 text-white d-inline">{{chat.message}}</div>
+				</div> 
+			{% endif %}
+		{% endfor %}
+	</div>
+	{% endif %}
+	<form method="POST" action="{{url_for('send_message')}}" class="m-auto">
+	  <div class="inline-form" style="
+			display: flex;
+		" >
+	    <input type="text" name="message" class="form-control" id="exampleUsername" aria-describedby="emailHelp" placeholder="Enter Message" value="{{request.form.message}}">
+	  	<input type="submit" class="btn ml-1 btn-info" value="Send">
+	  </div>
+	</form>
+
+	{% if session.username == 'root' %}
+	<form method="POST" action="{{url_for('delete')}}" class="m-auto">
+		<input type="submit" class="btn btn-lg btn-danger" value="Delete">
+	</form>
+	{% endif %}
+
+{% endblock %}

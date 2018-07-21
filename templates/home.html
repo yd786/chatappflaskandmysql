@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block code %}
+	<form method="POST" action="{{url_for('user_init')}}" class="w-50 pt-5 m-auto">
+	  <div class="form-group">
+	    <label for="exampleUsername">Username</label>
+	    <input type="text" name="username" class="form-control" id="exampleUsername" aria-describedby="emailHelp" placeholder="Enter Username" value="{{request.form.username}}">
+	  </div>
+	  <input type="submit" class="btn btn-info" value="Begin Chatting">
+	</form>
+{% endblock %}
